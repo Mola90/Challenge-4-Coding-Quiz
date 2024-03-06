@@ -1,1 +1,94 @@
- 
+*{
+    font-family: Helvetica, Arial, sans-serif;
+    
+    }
+
+    nav
+    {
+       height: 100px; 
+       display: flex;
+       justify-content:space-between;
+    }
+
+    nav h2
+    {
+        width: 33%;
+        padding: 20px;
+       
+    }
+
+    #timer{
+        padding: 20px;
+        text-align: right;
+        
+    }
+
+    #high-score
+    {
+        color: rgb(246, 120, 246);
+    }
+
+    /* body{
+
+        display: flex;
+        justify-content: center;
+    } */
+
+    #display{
+       display: flex;
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
+    }
+
+    #answer-display
+    {
+        max-width: 60%;
+    }
+
+    .button-start{
+        display: flex;
+        justify-content: center;
+        padding-top: 20px;
+    }
+
+    button{
+        background-color: rgb(246, 120, 246);
+        color: white;
+        border-color: rgb(246, 120, 246);
+        border-radius: 5px;
+        padding: 10px;
+    }
+
+    #display h2{
+        padding: 10px;
+        background-color: rgb(246, 120, 246) ;
+        margin: 5px;
+        border-radius: 5px;
+        width: 30%;
+    }
+
+    /* #answerB{
+        padding: 10px;
+        background-color: rgb(246, 120, 246) ;
+        margin: 5px;
+        border-radius: 5px;
+        width: 30%;
+    }
+    #answerC{
+        padding: 10px;
+        background-color: rgb(246, 120, 246) ;
+        margin: 5px;
+        border-radius: 5px;
+        width: 30%;
+    }
+    #answerD{
+        padding: 10px;
+        background-color: rgb(246, 120, 246) ;
+        margin: 5px;
+        border-radius: 5px;
+        width: 30%;
+    } */
+
+
+

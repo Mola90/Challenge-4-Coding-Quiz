@@ -1,14 +1,24 @@
  var timer = document.querySelector("#timer");
  var score = document.querySelector("#score");
+ var newScore = document.querySelector("#new-score");
  var mainQuestion = document.querySelector("#question-display");
  var mainAnswer = document.querySelector("#answer-display");
  var qaDisplay = document.querySelector("#display");
- var timerCount = 10;
+ var timerCount = 15;
+ var flag = true;
+ var a = 0;
+ var qaDisplay = document.querySelector("#display");
+
  
  var startButton = document.querySelector(".button-start");
  var askedQustions = [];
 
+ 
+
  var scoreNum = 0;
+
+ 
+
 
  // Array of questions
 
@@ -24,7 +34,7 @@
                    B:"let",
                    C:"const",
                    D:"all of the above",
-                   Correct: "A"
+                   Correct: "D"
                   },
                    {question: "What does the querySelector() method do in JavaScript?",
                    A:"Queries the document for elements that match a specified CSS selector",
@@ -38,7 +48,7 @@
                    B:"Loops through the elements of an array",
                    C:"Loops through the characters of a string",
                    D:"None of the above",
-                   Correct: "C"
+                   Correct: "B"
                   }
                   ];
 
@@ -65,38 +75,67 @@
 // after finishing change the 10 length back to questions.length
 
  function hasCommonElement(questions, askedQustions) {
-   for (let i = 0; i < 11; i++) {
-   if (!askedQustions.includes(questions[i])) {
-      askedQustions.push(questions[i]);
+   for (var i = 0; i < 11; i++) {
+
+      if ((timerCount < 1) || (askedQustions.length > 2)) {
+         let person = prompt("Please enter you initials");
+         console.log("this is you're score" + person);
+         askedQustions.push("string")
+      
+      }
+
+      console.log("for loop" + i);
+   if (flag) {
+      flag = false;
+      askedQustions.push(questions[a]);
       console.log(i);
 
-      var asked = questions[i];
+      var asked = questions[a];
 
 
       
    var ques = document.createElement("h1");
    ques.id = "question"
-   ques.textContent = questions[i].question;
+   ques.textContent = questions[a].question;
    qaDisplay.append(ques);
+   mainQuestion.remove();
+   mainAnswer.remove();
  
 
    var questionA = document.createElement("h2");
-   questionA.id = "answerA"
-   questionA.textContent = questions[i].A;
+   questionA.id = ""
+   questionA.textContent = questions[a].A;
    qaDisplay.append(questionA);
    questionA.addEventListener("click", ()=>{
 
       if ("A" == asked.Correct){
+         console.log("score::");
          scoreNum ++;
-         score.textContent = scoreNum;
+         console.log("score::"+scoreNum);
 
-         document.querySelector("#display").remove();
+         // score.textContent =scoreNum;
+         // score.textContent =scoreNum;
+         
 
+         // questionA.textContent = "";
+         // questionB.textContent = "";
+         // questionC.textContent = "";
+         // questionD.textContent = "";
+
+
+
+         qaDisplay.innerHTML = "";
 
          
-         // clear qustions
-         // add point done
-         //ask new question
+
+         console.log("this is the line after new question asked, in side click event");
+
+
+         ques.textContent = "";
+         flag = true;
+         a ++;
+
+         hasCommonElement(questions, askedQustions);
       }else {
          scoreNum --;
       }
@@ -106,15 +145,45 @@
 
    var questionB = document.createElement("h2");
    questionB.id = "answerB"
-   questionB.textContent = questions[i].B;
+   questionB.textContent = questions[a].B;
    qaDisplay.append(questionB);
    questionB.addEventListener("click", ()=>{
 
       if ("B" == asked.Correct){
          scoreNum ++;
-         score.textContent = scoreNum;
+         // score.textContent = scoreNum;
 
-         document.querySelector("#display").remove();
+         // document.querySelector("#answerA").remove();
+         // document.querySelector("#answerB").remove();
+         // document.querySelector("#answerC").remove();
+         // document.querySelector("#answerD").remove();
+
+         questionA.remove();
+         questionB.remove();
+         questionC.remove();
+         questionD.remove();
+         
+         
+
+
+         ques.textContent = "";
+         flag = true;
+         a ++;
+         
+         hasCommonElement(questions, askedQustions);
+
+
+
+         // document.querySelector("#display").remove();
+
+         // var newDev = document.createElement("div");
+         // newDev = 
+         // var questionHeading = document.createElement("h1");
+         // var answerHeading = document.createElement("h2");
+
+         
+
+         
 
 
          
@@ -129,21 +198,22 @@
 
    var questionC = document.createElement("h2");
    questionC.id = "answerC"
-   questionC.textContent = questions[i].C;
+   questionC.textContent = questions[a].C;
    qaDisplay.append(questionC);
    questionC.addEventListener("click", ()=>{
 
       if ("C" == asked.Correct){
          scoreNum ++;
-         score.textContent = scoreNum;
+         // score.textContent = scoreNum;
 
-         document.querySelector("#display").remove();
-
-
-         
-         // clear qustions
-         // add point done
-         //ask new question
+         questionA.remove();
+         questionB.remove();
+         questionC.remove();
+         questionD.remove();        
+         ques.remove();
+         flag = true;
+         a ++;
+         hasCommonElement(questions, askedQustions);
       }else {
          scoreNum --;
       }
@@ -152,21 +222,30 @@
 
    var questionD = document.createElement("h2");
    questionD.id = "answerD"
-   questionD.textContent = questions[i].D;
+   questionD.textContent = questions[a].D;
    qaDisplay.append(questionD);
    questionD.addEventListener("click", ()=>{
 
       if ("D" == asked.Correct){
          scoreNum ++;
-         score.textContent = scoreNum;
+         // score.textContent = scoreNum;
 
-         document.querySelector("#display").remove();
+         questionA.remove();
+         questionB.remove();
+         questionC.remove();
+         questionD.remove();        
+         ques.remove();
+         flag = true;
 
-
+         if ((timerCount < 1) || (askedQustions.length > 2)) {
+            let person = prompt("Please enter you initials");
+            console.log("this is you're score" + person);
          
-         // clear qustions
-         // add point done
-         //ask new question
+         }
+
+
+         a ++;
+         hasCommonElement(questions, askedQustions);
       }else {
          scoreNum --;
       }
@@ -174,9 +253,14 @@
    
    });
 
-   break;
+  
+}
+//break;
    
-}}}
+}
+
+
+}
 
  
 
@@ -184,11 +268,12 @@
 
    setInterval(function(){
       timerCount--;
-      timer.textContent = timerCount;
+      timer.textContent = "Time:" + timerCount;
       //console.log(timerCount);
   
   
    },1000);
+   hasCommonElement(questions, askedQustions);
 
  }
 
@@ -199,5 +284,5 @@
 
  });
 
- hasCommonElement(questions, askedQustions);
+ 
 
