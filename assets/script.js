@@ -20,7 +20,7 @@
  
 
 
- // Array of questions
+ 
 
  var questions = [{question: "What does the === operator do in JavaScript?",
                    A:"Assigns a value to a variable",
@@ -55,34 +55,24 @@
 
 
 
- //function renderQuestions (){
 
-   //check to see if this length of asked questions is shorter then length of questions
-// generate a random number and select that questions from the arrray
-// check to see if that question has already been asked
-// if yes, generate a new random number a
-// check to see if this question has already been asked.
-// repeat
-// check to see if the time has run out, if yes end game
-
-
-// if yes, end game
-//
-
-
-
-      
-// after finishing change the 10 length back to questions.length
 
  function hasCommonElement(questions, askedQustions) {
-   for (var i = 0; i < 11; i++) {
+   if ((timerCount < 1) || (askedQustions.length > 3)) {
+      let person = prompt("Please enter you initials");
+      console.log("this is you're score" + person);
 
-      if ((timerCount < 1) || (askedQustions.length > 2)) {
-         let person = prompt("Please enter you initials");
-         console.log("this is you're score" + person);
-         askedQustions.push("string")
-      
-      }
+      localStorage.setItem(person, scoreNum)
+      document.querySelector("#main-dispay").removeChild(startButton);
+      alert("congratulation " + person + " you scored " + scoreNum + " points");
+
+   
+   }
+
+
+   for (var i = 0; i < questions.length; i++) {
+
+ 
 
       console.log("for loop" + i);
    if (flag) {
@@ -113,15 +103,8 @@
          scoreNum ++;
          console.log("score::"+scoreNum);
 
-         // score.textContent =scoreNum;
-         // score.textContent =scoreNum;
+
          
-
-         // questionA.textContent = "";
-         // questionB.textContent = "";
-         // questionC.textContent = "";
-         // questionD.textContent = "";
-
 
 
          qaDisplay.innerHTML = "";
@@ -228,20 +211,19 @@
 
       if ("D" == asked.Correct){
          scoreNum ++;
-         // score.textContent = scoreNum;
+         console.log("testttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt");
+         //alert(askedQustions.length);
 
+         // score.textContent = scoreNum;
+        
          questionA.remove();
          questionB.remove();
          questionC.remove();
          questionD.remove();        
          ques.remove();
          flag = true;
-
-         if ((timerCount < 1) || (askedQustions.length > 2)) {
-            let person = prompt("Please enter you initials");
-            console.log("this is you're score" + person);
          
-         }
+
 
 
          a ++;
@@ -256,6 +238,13 @@
   
 }
 //break;
+
+if ((timerCount < 1) || (askedQustions.length > 4)) {
+   let person = prompt("Please enter you initials");
+   console.log("this is you're score" + person);
+
+}
+
    
 }
 
