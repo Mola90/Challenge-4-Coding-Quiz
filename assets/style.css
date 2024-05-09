@@ -68,6 +68,19 @@
         width: 30%;
     }
 
+    .high-score-container {
+        margin: 20px;
+        text-align: center; 
+        color: black;
+    }
+
+    .score-container{
+        margin: 20px;
+        text-align: center; 
+        color: rgb(246, 120, 246) ;
+
+    }
+
     /* #answerB{
         padding: 10px;
         background-color: rgb(246, 120, 246) ;

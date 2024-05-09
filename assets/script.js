@@ -4,21 +4,42 @@
  var mainQuestion = document.querySelector("#question-display");
  var mainAnswer = document.querySelector("#answer-display");
  var qaDisplay = document.querySelector("#display");
- var timerCount = 15;
+ var timerCount = 60;
  var flag = true;
  var a = 0;
  var qaDisplay = document.querySelector("#display");
-
- 
+ var timerinterval;
  var startButton = document.querySelector(".button-start");
  var askedQustions = [];
-
- 
-
  var scoreNum = 0;
 
  
+function printHighScore(){
+   console.log("first line");
 
+   var scoreContainer = document.createElement("div");
+   scoreContainer.className = "score-container";
+
+   var title = document.createElement("h1");
+   title.textContent = "High Score";
+   scoreContainer.appendChild(title);
+
+   for(let i = 0; i < localStorage.length; i++){
+      let name = localStorage.key(i);
+      let value = localStorage.getItem(name);
+
+      var scoreDiv = document.createElement("div");
+      scoreDiv.className = "high-score-container";
+      scoreDiv.textContent = `${name} ${value}`;
+      scoreContainer.appendChild(scoreDiv);
+      console.log("inside for loop" + i);
+
+   }
+   document.body.appendChild(scoreContainer);
+   console.log("last line");
+
+
+}
 
  
 
@@ -60,11 +81,14 @@
  function hasCommonElement(questions, askedQustions) {
    if ((timerCount < 1) || (askedQustions.length > 3)) {
       let person = prompt("Please enter you initials");
-      console.log("this is you're score" + person);
 
       localStorage.setItem(person, scoreNum)
       document.querySelector("#main-dispay").removeChild(startButton);
       alert("congratulation " + person + " you scored " + scoreNum + " points");
+      clearInterval(timerinterval);
+
+      printHighScore();
+
 
    
    }
@@ -74,11 +98,9 @@
 
  
 
-      console.log("for loop" + i);
    if (flag) {
       flag = false;
       askedQustions.push(questions[a]);
-      console.log(i);
 
       var asked = questions[a];
 
@@ -99,9 +121,7 @@
    questionA.addEventListener("click", ()=>{
 
       if ("A" == asked.Correct){
-         console.log("score::");
          scoreNum ++;
-         console.log("score::"+scoreNum);
 
 
          
@@ -111,7 +131,6 @@
 
          
 
-         console.log("this is the line after new question asked, in side click event");
 
 
          ques.textContent = "";
@@ -121,6 +140,7 @@
          hasCommonElement(questions, askedQustions);
       }else {
          scoreNum --;
+         timerCount = timerCount - 5;
       }
    
 
@@ -134,12 +154,7 @@
 
       if ("B" == asked.Correct){
          scoreNum ++;
-         // score.textContent = scoreNum;
 
-         // document.querySelector("#answerA").remove();
-         // document.querySelector("#answerB").remove();
-         // document.querySelector("#answerC").remove();
-         // document.querySelector("#answerD").remove();
 
          questionA.remove();
          questionB.remove();
@@ -157,24 +172,10 @@
 
 
 
-         // document.querySelector("#display").remove();
 
-         // var newDev = document.createElement("div");
-         // newDev = 
-         // var questionHeading = document.createElement("h1");
-         // var answerHeading = document.createElement("h2");
-
-         
-
-         
-
-
-         
-         // clear qustions
-         // add point done
-         //ask new question
       }else {
          scoreNum --;
+         timerCount = timerCount - 5;
       }
 
    });
@@ -187,7 +188,6 @@
 
       if ("C" == asked.Correct){
          scoreNum ++;
-         // score.textContent = scoreNum;
 
          questionA.remove();
          questionB.remove();
@@ -199,6 +199,7 @@
          hasCommonElement(questions, askedQustions);
       }else {
          scoreNum --;
+         timerCount = timerCount - 5;
       }
 
    });
@@ -211,10 +212,7 @@
 
       if ("D" == asked.Correct){
          scoreNum ++;
-         console.log("testttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt");
-         //alert(askedQustions.length);
-
-         // score.textContent = scoreNum;
+ 
         
          questionA.remove();
          questionB.remove();
@@ -230,6 +228,7 @@
          hasCommonElement(questions, askedQustions);
       }else {
          scoreNum --;
+         timerCount = timerCount - 5;
       }
 
    
@@ -237,13 +236,9 @@
 
   
 }
-//break;
 
-if ((timerCount < 1) || (askedQustions.length > 4)) {
-   let person = prompt("Please enter you initials");
-   console.log("this is you're score" + person);
 
-}
+
 
    
 }
@@ -255,11 +250,15 @@ if ((timerCount < 1) || (askedQustions.length > 4)) {
 
  function startGame(){
 
-   setInterval(function(){
+   timerinterval = setInterval(function(){
       timerCount--;
+      if (timerCount < 1) {
+        
+      clearInterval(timerinterval)
+      alert("Game Over. You Scored " + scoreNum);
+      }
       timer.textContent = "Time:" + timerCount;
-      //console.log(timerCount);
-  
+   
   
    },1000);
    hasCommonElement(questions, askedQustions);
